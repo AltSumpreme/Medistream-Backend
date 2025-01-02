@@ -2,7 +2,13 @@
   "name": "my-app",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@hono/node-server": "^1.13.7",
@@ -10,6 +16,9 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.3.0",
+    "prettier": "3.4.2",
     "tsx": "^4.7.1"
   }
 }
