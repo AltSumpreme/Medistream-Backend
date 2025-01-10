@@ -14,6 +14,7 @@ export default [
       "pre-commit",
       ".prettierignore",
       ".env",
+      "prisma/",
     ],
     files: ["**/*.{js,mjs,cjs,ts,tsx}"],
     languageOptions: {
