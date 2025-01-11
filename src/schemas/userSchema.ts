@@ -9,4 +9,5 @@ export const userSchema = z.object({
   role: z.string().optional().openapi({ example: "admin" }),
   createdAt: z.date().openapi({ example: "2022-01-01T00:00:00.000Z" }),
   updatedAt: z.date().openapi({ example: "2022-01-01T00:00:00.000Z" }),
+  authId: z.string().openapi({ example: "cm5mccbjk00002063ebefgxjp" }),
 });

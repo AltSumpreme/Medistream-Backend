@@ -22,8 +22,9 @@ model User {
   role       Role
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
-  
-  auth       Auth?     @relation("UserAuthRelation")
+  authId    String @unique
+  auth       Auth     @relation(fields :[authId],references: [id],onDelete: Cascade)
+
   patient    Patient?
   doctor     Doctor?
   admin      Admin?
@@ -37,10 +38,7 @@ model Auth {
   password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
-  user      User?    @relation("UserAuthRelation", fields: [Phone], references: [phone])
-  Phone     String   @unique
-
+  user      User?   
   @@index([email])
 }
 
