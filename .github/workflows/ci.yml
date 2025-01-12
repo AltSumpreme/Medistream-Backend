@@ -47,5 +47,10 @@ jobs:
       - name: Run ESLint
         run: pnpm eslint . --fix
 
+      - name: Debug TypeScript and Dependencies
+        run: |
+          echo "TypeScript Version: $(tsc --version)"
+          pnpm list --depth=2
+
       - name: Build the Project
-        run: pnpm run build
+        run: pnpm build
