@@ -41,16 +41,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Check package.json scripts
-        run: cat package.json
+      - name: Generate Prisma Client
+        run: pnpm prisma generate
 
-      - name: Run ESLint
-        run: pnpm eslint . --fix
+      - name: Type Check
+        run: pnpm tsc --noEmit
 
-      - name: Debug TypeScript and Dependencies
-        run: |
-          echo "TypeScript Version: $(tsc --version)"
-          pnpm list --depth=2
-
-      - name: Build the Project
+      - name: Build Project
         run: pnpm build
