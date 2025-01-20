@@ -76,8 +76,7 @@ export const register = createRoute({
       content: {
         "application/json": {
           schema: z.object({
-            FirstName: z.string().openapi({ example: "John" }),
-            LastName: z.string().openapi({ example: "Morris" }),
+            Name: z.string().openapi({ example: "John Doe" }),
             role: z.nativeEnum(Role).openapi({ example: "DOCTOR" }),
             phone: z.string().openapi({ example: "98902823234" }),
             email: z

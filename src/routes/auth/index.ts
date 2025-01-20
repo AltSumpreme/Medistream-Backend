@@ -46,8 +46,7 @@ authRouter.openapi(login, async (ctx) => {
 });
 
 authRouter.openapi(register, async (ctx) => {
-  const { FirstName, LastName, role, email, password, phone } =
-    ctx.req.valid("json");
+  const { Name, role, email, password, phone } = ctx.req.valid("json");
 
   if (!process.env.JWT_SECRET) {
     return ctx.json({ message: "Internal Server Error" }, 500);
@@ -81,8 +80,7 @@ authRouter.openapi(register, async (ctx) => {
     await cx.user.create({
       data: {
         role,
-        FirstName,
-        LastName,
+        Name,
         phone,
         id: auth.id,
         authId: auth.id,
