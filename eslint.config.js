@@ -15,6 +15,9 @@ export default [
       ".prettierignore",
       ".env",
       "prisma/",
+      "DOCKERfILE",
+      "docker-compose.yml",
+      "init.sh",
     ],
     files: ["**/*.{js,mjs,cjs,ts,tsx}"],
     languageOptions: {

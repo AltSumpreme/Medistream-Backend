@@ -82,7 +82,7 @@ export const register = createRoute({
             email: z
               .string()
               .email()
-              .openapi({ example: " johnDoe@gmail.com" }),
+              .openapi({ example: "johnDoe@example.com" }),
             password: z.string().min(8).openapi({ example: "password123" }),
           }),
         },

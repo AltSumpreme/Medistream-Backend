@@ -1,0 +1,10 @@
+services:
+  hono-api:
+    container_name: hono-api
+    build:
+      context: .
+    ports:
+      - "${HONO_PORT}:3000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    restart: always

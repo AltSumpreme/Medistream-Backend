@@ -22,6 +22,9 @@ importers:
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
       hono:
         specifier: ^4.6.16
         version: 4.6.16
@@ -1180,6 +1183,13 @@ packages:
       {
         integrity: sha512-cTOAhc36AalkjtBpfG6O8JimdTMWNXjiePT2xQH/ppBGi/4uIpmj8eKyIkMJErXWARyINV/sB38yf8JCLF5pbQ==,
       }
+
+  dotenv@16.4.7:
+    resolution:
+      {
+        integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==,
+      }
+    engines: { node: ">=12" }
 
   drange@1.1.1:
     resolution:
@@ -3769,6 +3779,8 @@ snapshots:
   detect-libc@2.0.3: {}
 
   dompurify@3.1.6: {}
+
+  dotenv@16.4.7: {}
 
   drange@1.1.1: {}
 
