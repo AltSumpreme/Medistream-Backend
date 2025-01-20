@@ -1,7 +1,7 @@
 // prescriptionSchema.ts
 import { z } from "@hono/zod-openapi";
-import { patientSchema } from "./patientSchema.js";
-import { doctorSchema } from "./doctorSchema.js";
+import { patientSchema } from "./patient.js";
+import { doctorSchema } from "./doctor.js";
 
 export const prescriptionSchema = z.object({
   id: z.number().int().positive().openapi({ example: 1 }),

@@ -1,6 +1,6 @@
 // doctorSchema.ts
 import { z } from "@hono/zod-openapi";
-import { userSchema } from "./userSchema.js";
+import { userSchema } from "./user.js";
 
 export const doctorSchema = z.object({
   id: z.string().openapi({ example: "cm5mccbjk00002063ebefgxjp" }),

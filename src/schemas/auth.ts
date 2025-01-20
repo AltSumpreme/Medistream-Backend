@@ -1,5 +1,5 @@
 import { z } from "@hono/zod-openapi";
-import { userSchema } from "./userSchema.js";
+import { userSchema } from "./user.js";
 
 export const authSchema = z.object({
   id: z.string().cuid().openapi({ example: "cm5mccbjk00002063ebefgxjp" }),

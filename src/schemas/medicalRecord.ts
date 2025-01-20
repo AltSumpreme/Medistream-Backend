@@ -1,7 +1,8 @@
 // medicalRecordSchema.ts
 import { z } from "@hono/zod-openapi";
-import { patientSchema } from "./patientSchema.js";
-import { doctorSchema } from "./doctorSchema.js";
+import { patientSchema } from "./patient.js";
+import { doctorSchema } from "./doctor.js";
+
 export const medicalRecordSchema = z.object({
   id: z.number().int().positive().openapi({ example: 1 }),
   recordDate: z.date().openapi({ example: "2024-01-01T00:00:00.000Z" }),
