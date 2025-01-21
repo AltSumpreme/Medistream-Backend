@@ -68,28 +68,37 @@ authRouter.openapi(register, async (ctx) => {
 
   const hashedPassword = await hashPassword(password);
 
-  await prisma.$transaction(async (cx) => {
+  const newUser = await prisma.$transaction(async (cx) => {
     const auth = await cx.auth.create({
       data: {
         id: v4(),
         email,
         password: hashedPassword,
+        user: {
+          create: {
+            role,
+            Name,
+            phone,
+            id: v4(),
+          },
+        },
       },
-    });
-
-    await cx.user.create({
-      data: {
-        role,
-        Name,
-        phone,
-        id: auth.id,
-        authId: auth.id,
-      },
+      include: { user: true },
     });
 
     return auth;
   });
-  return ctx.json({ message: "User has succesfully registered" }, 201);
+
+  const token = await sign(
+    {
+      userId: newUser.user?.id,
+      role: newUser.user?.role,
+      exp: Math.floor(Date.now() / 1000) + 60 * 60, // Token expires in 1h
+    },
+    process.env.JWT_SECRET
+  );
+
+  return ctx.json({ token: token }, 201);
 });
 
 export default authRouter;

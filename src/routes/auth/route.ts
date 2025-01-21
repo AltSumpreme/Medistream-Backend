@@ -94,9 +94,7 @@ export const register = createRoute({
       description: "User Registered",
       content: {
         "application/json": {
-          schema: z.object({
-            message: z.string().openapi({ example: "User Registered" }),
-          }),
+          schema: z.object({}),
         },
       },
     },
