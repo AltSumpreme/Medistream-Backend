@@ -10,17 +10,17 @@ type Variables = JwtVariables;
 
 const app = new OpenAPIHono<{ Variables: Variables }>();
 
-app.openAPIRegistry.registerComponent("securitySchemes", "Bearer", {
-  type: "http",
-  scheme: "bearer",
-  bearerFormat: "JWT",
-});
-
 app.use("*", (c, next) => {
   const corsMiddleware = cors({
     origin: process.env.ALLOWED_ORIGINS?.split(",") || [],
   });
   return corsMiddleware(c, next);
+});
+
+app.openAPIRegistry.registerComponent("securitySchemes", "Bearer", {
+  type: "http",
+  scheme: "bearer",
+  bearerFormat: "JWT",
 });
 
 app.get("/", (c) => {
