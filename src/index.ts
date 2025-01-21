@@ -16,6 +16,13 @@ app.openAPIRegistry.registerComponent("securitySchemes", "Bearer", {
   bearerFormat: "JWT",
 });
 
+app.use("*", (c, next) => {
+  const corsMiddleware = cors({
+    origin: process.env.ALLOWED_ORIGINS?.split(",") || [],
+  });
+  return corsMiddleware(c, next);
+});
+
 app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
@@ -38,12 +45,6 @@ if (!secret) {
   throw new Error("JWT_SECRET not set.");
 }
 
-app.use("*", (c, next) => {
-  const corsMiddleware = cors({
-    origin: process.env.ALLOWED_ORIGINS?.split(",") || [],
-  });
-  return corsMiddleware(c, next);
-});
 app.use(jwt({ secret }));
 
 const port = 3000;
