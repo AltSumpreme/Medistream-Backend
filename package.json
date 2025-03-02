@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "prepare": "husky install",
+    "prepare": "husky",
     "lint": "eslint .",
     "build": "rm -rf dist/ && tsc"
   },
