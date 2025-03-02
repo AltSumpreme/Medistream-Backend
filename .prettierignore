@@ -4,4 +4,5 @@ node_modules
 prisma/*
 Dockerfile
 docker-compose.yml
+.dockerignore
 init.sh
