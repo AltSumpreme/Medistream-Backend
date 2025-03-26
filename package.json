@@ -13,7 +13,7 @@
     "@hono/swagger-ui": "^0.5.1",
     "@hono/zod-openapi": "^0.18.4",
     "@prisma/client": "^6.5.0",
-    "bcrypt": "^5.1.1",
+    "argon2": "^0.41.1",
     "dotenv": "^16.4.7",
     "hono": "^4.7.5",
     "prisma": "^6.5.0",
