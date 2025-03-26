@@ -47,9 +47,6 @@ importers:
       "@eslint/js":
         specifier: ^9.23.0
         version: 9.23.0
-      "@types/bcrypt":
-        specifier: ^5.0.2
-        version: 5.0.2
       "@types/node":
         specifier: ^20.17.27
         version: 20.17.27
@@ -763,12 +760,6 @@ packages:
     peerDependenciesMeta:
       tree-sitter:
         optional: true
-
-  "@types/bcrypt@5.0.2":
-    resolution:
-      {
-        integrity: sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ==,
-      }
 
   "@types/estree@1.0.7":
     resolution:
@@ -3417,10 +3408,6 @@ snapshots:
     optionalDependencies:
       tree-sitter: 0.22.1
     optional: true
-
-  "@types/bcrypt@5.0.2":
-    dependencies:
-      "@types/node": 20.17.27
 
   "@types/estree@1.0.7": {}
 
