@@ -9,6 +9,6 @@ export const medicalRecordSchema = z.object({
   description: z.string().openapi({ example: "Regular checkup report" }),
   patientId: z.string().openapi({ example: "cm5mccbjk00002063ebefgxjp" }),
   doctorId: z.string().openapi({ example: "cm5mccbjk00002063ebefgxjp" }),
-  patient: patientSchema,
-  doctor: doctorSchema,
+  patient: z.array(patientSchema),
+  doctor: z.array(doctorSchema),
 });

@@ -66,7 +66,7 @@ authRouter.openapi(register, async (ctx) => {
     return ctx.json({ message: "The user already exists" }, 400);
   }
 
-  const hashedPassword = await hashPassword(password);
+  const hashedPassword = await hashPassword(password as string);
 
   const newUser = await prisma.$transaction(async (cx) => {
     const auth = await cx.auth.create({

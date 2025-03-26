@@ -11,6 +11,6 @@ export const prescriptionSchema = z.object({
   expiresAt: z.date().openapi({ example: "2024-02-01T00:00:00.000Z" }),
   patientId: z.string().openapi({ example: "cm5mccbjk00002063ebefgxjp" }),
   doctorId: z.string().openapi({ example: "cm5mccbjk00002063ebefgxjp" }),
-  patient: patientSchema,
-  doctor: doctorSchema,
+  patient: z.array(patientSchema),
+  doctor: z.array(doctorSchema),
 });

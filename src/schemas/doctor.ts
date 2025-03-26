@@ -7,5 +7,5 @@ export const doctorSchema = z.object({
   licenseNumber: z.string().openapi({ example: "MD123456" }),
   specialization: z.string().openapi({ example: "Cardiology" }),
   yearsOfExperience: z.number().int().positive().openapi({ example: 10 }),
-  user: userSchema,
+  user: z.array(userSchema),
 });

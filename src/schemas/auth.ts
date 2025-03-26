@@ -7,6 +7,6 @@ export const authSchema = z.object({
   password: z.string().openapi({ example: "password" }),
   createdAt: z.date().openapi({ example: "2022-01-01T00:00:00.000Z" }),
   updatedAt: z.date().openapi({ example: "2022-01-01T00:00:00.000Z" }),
-  user: userSchema,
+  user: z.array(userSchema),
   Phone: z.string().optional().openapi({ example: "1234567890" }),
 });
