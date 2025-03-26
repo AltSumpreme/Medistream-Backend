@@ -5,7 +5,8 @@
     "dev": "tsx watch src/index.ts",
     "prepare": "husky",
     "lint": "eslint .",
-    "build": "rm -rf dist/ && tsc"
+    "build": "rm -rf dist/ && tsc",
+    "start": "node dist/index.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.14.0",
