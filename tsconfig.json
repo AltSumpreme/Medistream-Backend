@@ -11,8 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "jsxImportSource": "hono/jsx",
-    "noEmit": true
+    "jsxImportSource": "hono/jsx"
   },
   "ts-node": {
     "esm": true

@@ -3,9 +3,9 @@ RUN apt-get update -y && \
     apt-get install -y openssl wget && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN npm install -g pnpm
+RUN npm install -g pnpm node-gyp
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml .env ./
 RUN pnpm install
 COPY . .
 COPY init.sh .
