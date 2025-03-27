@@ -10,5 +10,5 @@ RUN pnpm install
 COPY . .
 COPY init.sh .
 RUN chmod +x init.sh
-EXPOSE 3000
+EXPOSE 3050
 CMD ["./init.sh"]

@@ -11,8 +11,11 @@ type Variables = JwtVariables;
 const app = new OpenAPIHono<{ Variables: Variables }>();
 
 app.use("*", (c, next) => {
+  const allowedOrigins = process.env.ALLOWED_ORIGINS;
   const corsMiddleware = cors({
-    origin: process.env.ALLOWED_ORIGINS?.split(",") || [],
+    origin: allowedOrigins === "*" ? "*" : allowedOrigins?.split(",") || [],
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowHeaders: ["Content-Type", "Authorization"],
   });
   return corsMiddleware(c, next);
 });
@@ -47,10 +50,14 @@ if (!secret) {
 
 app.use(jwt({ secret }));
 
-const port = 3000;
-console.log(`Server is running on http://localhost:${port}`);
+console.log(process.env.HONO_PORT);
+const port = process.env.HONO_PORT ? parseInt(process.env.HONO_PORT) : 3050;
+const host = "0.0.0.0"; // Allow external access
+
+console.log(`Server is running on http://${host}:${port}`);
 
 serve({
   fetch: app.fetch,
   port,
+  hostname: host, // Explicitly bind to 0.0.0.0
 });
