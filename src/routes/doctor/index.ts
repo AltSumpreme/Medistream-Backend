@@ -84,9 +84,25 @@ doctorRouter.openapi(updateDoctor, async (ctx) => {
     if (!doctor) {
       return ctx.json("Doctor not found", 404);
     }
+    const { Name, phone } = ctx.req.valid("json");
+
     if (user.role === "DOCTOR" && doctor?.id !== doctorId) {
       return ctx.json("Unauthorized access", 403);
     }
+    await prisma.doctor.update({
+      where: {
+        id: doctorId,
+      },
+      data: {
+        user: {
+          update: {
+            Name: Name,
+            phone: phone,
+          },
+        },
+      },
+    });
+
     return ctx.json("Doctor updated", 200);
   } catch (err) {
     console.log("Error occured", err);

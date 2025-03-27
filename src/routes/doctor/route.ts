@@ -75,7 +75,18 @@ export const updateDoctor = createRoute({
         example: "123e4567-e89b-12d3-a456-426614174000",
       }),
     }),
+    body: {
+      content: {
+        "application/json": {
+          schema: z.object({
+            Name: z.string().openapi({ example: "John Doe" }),
+            phone: z.string().openapi({ example: "98902823234" }),
+          }),
+        },
+      },
+    },
   },
+
   responses: {
     200: {
       description: "Doctor Updated",
