@@ -11,27 +11,29 @@ type Variables = JwtVariables;
 
 const app = new OpenAPIHono<{ Variables: Variables }>();
 
-app.use("*", async (c, next) => {
-  const allowedOrigins = process.env.ALLOWED_ORIGINS;
-
-  const corsMiddleware = cors({
-    origin: allowedOrigins === "*" ? "*" : allowedOrigins?.split(",") || [],
+app.use(
+  "*",
+  cors({
+    origin:
+      process.env.ALLOWED_ORIGINS === "*"
+        ? "*"
+        : process.env.ALLOWED_ORIGINS?.split(",") || [],
     allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+app.use("*", async (c, next) => {
+  await logRequest({
+    severity: "INFO",
+    message: "Incoming request",
+    method: c.req.method,
+    path: c.req.path,
+    origin: c.req.header("origin"),
+    headers: Object.fromEntries(c.req.raw.headers),
   });
 
-  await corsMiddleware(c, async () => {
-    await logRequest({
-      severity: "INFO",
-      message: "Incoming request",
-      method: c.req.method,
-      path: c.req.path,
-      origin: c.req.header("origin"),
-      headers: Object.fromEntries(c.req.raw.headers),
-    });
-
-    await next();
-  });
+  await next();
 });
 
 app.openAPIRegistry.registerComponent("securitySchemes", "Bearer", {
