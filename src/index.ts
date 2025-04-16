@@ -5,7 +5,6 @@ import { jwt } from "hono/jwt";
 import { cors } from "hono/cors";
 import type { JwtVariables } from "hono/jwt";
 import authRouter from "./routes/auth/index.js";
-import { logRequest } from "./logger.js";
 
 type Variables = JwtVariables;
 
@@ -22,19 +21,6 @@ app.use(
     allowHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.use("*", async (c, next) => {
-  await logRequest({
-    severity: "INFO",
-    message: "Incoming request",
-    method: c.req.method,
-    path: c.req.path,
-    origin: c.req.header("origin"),
-    headers: Object.fromEntries(c.req.raw.headers),
-  });
-
-  await next();
-});
 
 app.openAPIRegistry.registerComponent("securitySchemes", "Bearer", {
   type: "http",

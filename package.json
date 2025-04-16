@@ -9,7 +9,6 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@google-cloud/logging": "^11.2.0",
     "@hono/node-server": "^1.14.0",
     "@hono/swagger-ui": "^0.5.1",
     "@hono/zod-openapi": "^0.18.4",
