@@ -42,7 +42,6 @@ model Auth {
 
 model Patient {
   id             String          @id@default(cuid())
-  birthDate      DateTime
   user           User           @relation(fields: [id], references: [id])
   appointments   Appointment[]
   prescriptions  Prescription[]
