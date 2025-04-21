@@ -123,3 +123,5 @@ patientRouter.openapi(deletePatient, async (ctx) => {
     return ctx.json({ message: "Internal Server Error" }, 500);
   }
 });
+
+export default patientRouter;

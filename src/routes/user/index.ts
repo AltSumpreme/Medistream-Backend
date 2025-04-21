@@ -6,38 +6,31 @@ const userRouter = new OpenAPIHono();
 
 userRouter.openapi(getUser, async (ctx) => {
   const payload = ctx.get("jwtPayload");
+  const userId = payload?.userId;
 
-  const id = payload.id;
+  if (!userId) {
+    return ctx.json({ message: "Invalid token payload" }, 400);
+  }
 
   try {
     const user = await prisma.user.findUnique({
-      where: { id },
-      include: {
-        auth: {
-          select: {
-            email: true,
-          },
-        },
-      },
+      where: { id: userId },
     });
 
     if (!user) {
-      return ctx.text("User not found", 404);
+      return ctx.json({ message: "User not found" }, 404);
     }
 
     return ctx.json({
       id: user.id,
       name: user.Name,
-      email: user.auth.email,
       role: user.role,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     });
   } catch (error) {
-    return ctx.text(
-      error instanceof Error ? error.message : "An unknown error occurred",
-      500
-    );
+    console.error("Error fetching user:", error);
+    return ctx.json({ message: "Internal Server Error" }, 500);
   }
 });
 

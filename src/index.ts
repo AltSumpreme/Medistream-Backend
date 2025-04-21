@@ -5,7 +5,7 @@ import { jwt } from "hono/jwt";
 import { cors } from "hono/cors";
 import type { JwtVariables } from "hono/jwt";
 import authRouter from "./routes/auth/index.js";
-
+import userRouter from "./routes/user/index.js";
 type Variables = JwtVariables;
 
 const app = new OpenAPIHono<{ Variables: Variables }>();
@@ -51,6 +51,7 @@ if (!secret) {
 }
 
 app.use(jwt({ secret }));
+app.route("/user", userRouter);
 
 console.log(process.env.HONO_PORT);
 const port = process.env.HONO_PORT ? parseInt(process.env.HONO_PORT) : 3050;

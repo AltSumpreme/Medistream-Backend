@@ -2,7 +2,7 @@ import { z, createRoute } from "@hono/zod-openapi";
 
 export const getUser = createRoute({
   method: "get",
-  path: "/profile",
+  path: "/",
   security: [{ Bearer: [] }],
   request: {
     body: {
