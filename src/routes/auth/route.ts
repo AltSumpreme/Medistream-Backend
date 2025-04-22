@@ -4,7 +4,8 @@ import { Role } from "@prisma/client";
 export const login = createRoute({
   method: "post",
   path: "/login",
-  tags: ["auth"],
+  tags: ["Auth"],
+  description: "logging in user",
   request: {
     body: {
       content: {
@@ -22,14 +23,12 @@ export const login = createRoute({
       description: " User Login successful",
       content: {
         "application/json": {
-          schema: z
-            .object({
-              token: z.string().openapi({
-                example:
-                  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-              }),
-            })
-            .openapi("Login Response"),
+          schema: z.object({
+            token: z.string().openapi({
+              example:
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+            }),
+          }),
         },
       },
     },
@@ -70,7 +69,8 @@ export const login = createRoute({
 export const register = createRoute({
   method: "post",
   path: "/register",
-  tags: ["auth"],
+  tags: ["Auth"],
+  description: "Registering a new user",
   request: {
     body: {
       content: {

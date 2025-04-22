@@ -4,7 +4,9 @@ import { doctorSchema } from "../../schemas/doctor.js";
 export const getDoctor = createRoute({
   method: "get",
   path: "/doctor",
-  tags: ["doctor"],
+  tags: ["Doctor"],
+  description: "Get all doctors",
+  security: [{ Bearer: [] }],
   responses: {
     200: {
       description: "Doctor Found",
@@ -31,7 +33,9 @@ export const getDoctor = createRoute({
 export const getDoctorById = createRoute({
   method: "get",
   path: "/doctor/{id}",
-  tags: ["doctor"],
+  tags: ["Doctor"],
+  description: "Get doctor by ID",
+  security: [{ Bearer: [] }],
   request: {
     params: z.object({
       id: z.string().uuid().openapi({
@@ -68,7 +72,9 @@ export const getDoctorById = createRoute({
 export const updateDoctor = createRoute({
   method: "put",
   path: "/doctor/{id}",
-  tags: ["doctor"],
+  tags: ["Doctor"],
+  description: "Update doctor by ID",
+  security: [{ Bearer: [] }],
   request: {
     params: z.object({
       id: z.string().uuid().openapi({
@@ -116,8 +122,9 @@ export const updateDoctor = createRoute({
 export const deleteDoctor = createRoute({
   method: "delete",
   path: "/doctor/{id}",
-  tags: ["doctor"],
-
+  tags: ["Doctor"],
+  description: "Delete doctor by ID",
+  security: [{ Bearer: [] }],
   request: {
     params: z.object({
       id: z.string().uuid().openapi({

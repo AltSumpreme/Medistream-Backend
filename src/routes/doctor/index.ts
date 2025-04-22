@@ -141,3 +141,5 @@ doctorRouter.openapi(deleteDoctor, async (ctx) => {
     return ctx.json("Internal Server Error", 500);
   }
 });
+
+export default doctorRouter;
