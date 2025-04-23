@@ -30,11 +30,9 @@ medistream-backend/
 ├── prisma/               # Prisma schema and migrations
 ├── src/
 │   ├── routes/           # Route definitions
-│   ├── controllers/      # Controller logic
-│   ├── services/         # Business and DB logic
-│   ├── middleware/       # Custom middleware functions
+│   ├── lib/              #  utility functions and helper methods for various services
+│   ├── schemas/          # schema models defined with prisma
 │   └── utils/            # Utility functions
-├── swagger/              # Swagger config and specs
 ├── .husky/               # Husky Git hooks
 ├── Dockerfile            # Docker image config
 ├── docker-compose.yml    # Docker Compose services
