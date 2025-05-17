@@ -75,22 +75,39 @@ authRouter.openapi(register, async (ctx) => {
     const hashedPassword = await hashPassword(password as string);
 
     const newUser = await prisma.$transaction(async (cx) => {
+      const authId = v4();
+      const userId = v4();
+
       const auth = await cx.auth.create({
         data: {
-          id: v4(),
+          id: authId,
           email,
           password: hashedPassword,
           user: {
             create: {
+              id: userId,
               role,
               Name,
               phone,
-              id: v4(),
             },
           },
         },
         include: { user: true },
       });
+
+      if (role === "PATIENT") {
+        await cx.patient.create({
+          data: {
+            userId: userId,
+          },
+        });
+      } else if (role === "DOCTOR") {
+        await cx.doctor.create({
+          data: {
+            userId: userId,
+          },
+        });
+      }
 
       return auth;
     });
